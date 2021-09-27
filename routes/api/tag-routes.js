@@ -19,8 +19,6 @@ router.get('/', async (req, res) => {
     
     res.status(200).json(tagData);
   } catch (err) {
-    console.log(`Inside tag-routes findAll ${err}`);
-
     res.status(500).json(err);
   }
 });
@@ -42,8 +40,6 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).json(tagData);
   } catch (err) {
-    console.log(`Inside tag routes findByPk ${err}`);
-
     res.status(500).json(err);
   }
 });

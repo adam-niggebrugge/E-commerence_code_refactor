@@ -21,8 +21,6 @@ router.get('/', async (req, res) => {
     
     res.status(200).json(categoryData);
   } catch (err) {
-    console.log(`Inside Category findAll ${err}`);
-
     res.status(500).json(err);
   }
 });
@@ -43,8 +41,6 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).json(categoryData);
   } catch (err) {
-    console.log(`Inside categoryData findByPk ${err}`);
-
     res.status(500).json(err);
   }
 });
