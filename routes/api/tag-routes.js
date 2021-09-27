@@ -32,8 +32,7 @@ router.get('/:id', async (req, res) => {
     const tagData = await Tag.findByPk
     // JOIN with products which have a foregin key to categories
     (req.params.id, {
-      include: [{ model: Category, as: 'category' },
-      { model: Product, through: ProductTag, as: 'products_tag' }]
+      include: [{ model: Product, through: ProductTag, as: 'products_tag' }]
     });
   
     if(!tagData){
