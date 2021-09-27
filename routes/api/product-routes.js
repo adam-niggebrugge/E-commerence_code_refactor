@@ -21,8 +21,6 @@ router.get('/', async (req, res) => {
     }
     res.status(200).json(productData);
   } catch (err) {
-    console.log(`Inside findAll ${err}`);
-    console.log(err.message);
     res.status(500).json(err);
   }
 });
@@ -46,8 +44,6 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).json(productData);
   } catch (err) {
-    console.log(`Inside findAll ${err}`);
-
     res.status(500).json(err);
   }
 });
@@ -65,7 +61,8 @@ router.post('/', (req, res) => {
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.tagIds.length) {
+      //update just check if there is a truthy value, length spits error when no tags provided
+      if (req.body.tagIds) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
@@ -79,7 +76,6 @@ router.post('/', (req, res) => {
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
-      console.log(err);
       res.status(400).json(err);
     });
 });
@@ -122,11 +118,9 @@ router.put('/:id', (req, res) => {
           ProductTag.bulkCreate(newProductTags),
         ]);
       }
-      
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      console.log(err);
       res.status(400).json(err);
     });
 });
