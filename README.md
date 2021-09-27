@@ -35,7 +35,7 @@ _ _ _ _
 
 ## Technology
 
-Javascript, Heroku, NodeJS, MySQL
+Javascript, NodeJS, MySQL
 
 ## Installation
 
@@ -50,6 +50,17 @@ npm install express
 npm install sequelize
 
 ```
+
+must set up a .env file based on MySQL installed settings. It will look like below with <> replaced based on installed setting.
+
+```
+
+DB_USER='<user_name_here>'
+DB_PW='<password_here>'
+DB_NAME='ecommerce_db'
+
+```
+
 _ _ _ _
 
 ## Tests
