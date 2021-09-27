@@ -19,6 +19,8 @@ router.get('/', async (req, res) => {
     
     res.status(200).json(tagData);
   } catch (err) {
+    console.log(`Inside tag-routes findAll ${err}`);
+
     res.status(500).json(err);
   }
 });
@@ -30,8 +32,8 @@ router.get('/:id', async (req, res) => {
     const tagData = await Tag.findByPk
     // JOIN with products which have a foregin key to categories
     (req.params.id, {
-      include: [{ model: Category, as: 'Category' }],
-      include: [{ model: Product, through: ProductTag, as: 'products_tag' }]
+      include: [{ model: Category, as: 'category' },
+      { model: Product, through: ProductTag, as: 'products_tag' }]
     });
   
     if(!tagData){
@@ -41,6 +43,8 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).json(tagData);
   } catch (err) {
+    console.log(`Inside tag routes findByPk ${err}`);
+
     res.status(500).json(err);
   }
 });

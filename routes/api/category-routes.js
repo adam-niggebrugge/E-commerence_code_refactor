@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     const categoryData = await Category.findAll
      // JOIN with products which have a foregin key to categories
     ({
-       include: [{ model: Product, as: 'products_in_category' }]
+       include: [{ model: Product, as: 'products' }]
     });
     
     if(!categoryData){
@@ -21,6 +21,8 @@ router.get('/', async (req, res) => {
     
     res.status(200).json(categoryData);
   } catch (err) {
+    console.log(`Inside Category findAll ${err}`);
+
     res.status(500).json(err);
   }
 });
@@ -31,7 +33,7 @@ router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {
       // JOIN with locations, using the Trip through table
-      include: [{ model: Product, as: 'products_in_category' }]
+      include: [{ model: Product, as: 'products' }]
     });
 
     if (!categoryData) {
@@ -41,6 +43,8 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).json(categoryData);
   } catch (err) {
+    console.log(`Inside categoryData findByPk ${err}`);
+
     res.status(500).json(err);
   }
 });
