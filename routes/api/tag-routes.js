@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   try{
     const tagData = await Tag.findAll({
      // JOIN with products, using the ProductTag table
-       include: [{ model: Product, through: ProductTag, as: 'products_tags' }]
+       include: [{ model: Product, through: ProductTag, as: 'product_tag' }]
     });
     
     if(!tagData){
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
     // JOIN with products which have a foregin key to categories
     (req.params.id, {
       include: [{ model: Category, as: 'Category' }],
-      include: [{ model: Product, through: ProductTag, as: 'product_tags' }]
+      include: [{ model: Product, through: ProductTag, as: 'product_tag' }]
     });
   
     if(!tagData){

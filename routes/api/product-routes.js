@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
      // JOIN with products which have a foregin key to categories
     ({
        include: [{ model: Category, as: 'Category' }],
-       include: [{ model: Tag, through: ProductTag, as: 'Tags' }]
+       include: [{ model: Tag, through: ProductTag, as: 'tag_product' }]
     });
     
     if(!productData){
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
     // JOIN with products which have a foregin key to categories
     (req.params.id, {
       include: [{ model: Category, as: 'Category' }],
-      include: [{ model: Tag, through: ProductTag, as: 'Tags' }]
+      include: [{ model: Tag, through: ProductTag, as: 'tag_product' }]
     });
   
     if(!productData){
