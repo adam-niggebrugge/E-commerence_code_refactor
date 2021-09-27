@@ -68,8 +68,6 @@ router.put('/:id', async (req, res) => {
     }
     res.status(200).json(tagData);
   } catch (err) {
-    console.log(`Inside put - err is - ${err}`);
-
     res.status(500).json(err);
   }
 });
