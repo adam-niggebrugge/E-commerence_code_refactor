@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     });
     
     if(!productData){
-      res.status.apply(400).json({message: 'No products found!!'});
+      res.status(400).json({message: 'No products found!!'});
       return;
     }
     res.status(200).json(productData);
@@ -38,13 +38,12 @@ router.get('/:id', async (req, res) => {
     });
   
     if(!productData){
-      res.status.apply(400).json({message: 'No product found with this id!'});
+      res.status(400).json({message: 'No product found with this id!'});
       return;
     }
-
     res.status(200).json(productData);
   } catch (err) {
-    res.status(500).json(err);
+        res.status(500).json(err);
   }
 });
 
