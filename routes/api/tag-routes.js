@@ -12,8 +12,8 @@ router.get('/', async (req, res) => {
        include: [{ model: Product, through: ProductTag, as: 'products_tag' }]
     });
     
-    if(!tagData){
-      res.status.apply(400).json({message: 'No tags found!!'});
+    if(!tagData || tagData == null){
+      res.status(400).json({message: 'No tags found!!'});
       return;
     }
     
@@ -32,12 +32,12 @@ router.get('/:id', async (req, res) => {
     (req.params.id, {
       include: [{ model: Product, through: ProductTag, as: 'products_tag' }]
     });
-  
-    if(!tagData){
-      res.status.apply(400).json({message: 'No tag found with this id!'});
+    
+    if(!tagData || tagData == null){
+      console.log(`did this fire?? ${tagData}`);
+      res.status(400).json({message: 'No tag found with this id!'});
       return;
     }
-
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
@@ -62,8 +62,9 @@ router.put('/:id', async (req, res) => {
         id: req.params.id,
       },
     });
-    if (!tagData[0]) {
-      res.status(404).json({ message: 'No tag with this id!' });
+    
+    if (!tagData || tagData == null) {
+       res.status(404).json({ message: 'No tag with this id!' });
       return;
     }
     res.status(200).json(tagData);
@@ -80,7 +81,7 @@ router.delete('/:id', async (req, res) => {
         id: req.params.id
       }
     });
-    if (!tagData) {
+    if (!tagData || tagData == null) {
       res.status(404).json({ message: 'No tag found with this id!' });
       return;
     }

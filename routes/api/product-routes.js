@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
        { model: Tag, through: ProductTag, as: 'tagged_product' }]
     });
     
-    if(!productData){
+    if(!productData || productData == null){
       res.status(400).json({message: 'No products found!!'});
       return;
     }
@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
       { model: Tag, through: ProductTag, as: 'tagged_product' }]
     });
   
-    if(!productData){
+    if(!productData || productData == null){
       res.status(400).json({message: 'No product found with this id!'});
       return;
     }
@@ -133,7 +133,7 @@ router.delete('/:id', async (req, res) => {
       }
     });
 
-    if (!productData) {
+    if(!productData || productData == null){
       res.status(404).json({ message: 'No product found with this id!' });
       return;
     }

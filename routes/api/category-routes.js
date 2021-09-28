@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
        include: [{ model: Product, as: 'products' }]
     });
     
-    if(!categoryData){
+    if(!categoryData || categoryData == null ){
       res.status.apply(400).json({message: 'No categories found!!'});
       return;
     }
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
       include: [{ model: Product, as: 'products' }]
     });
 
-    if (!categoryData) {
+    if(!categoryData || categoryData == null ){
       res.status(404).json({ message: 'No category found with this id!' });
       return;
     }
@@ -64,7 +64,7 @@ router.put('/:id', async (req, res) => {
       }
     });
 
-    if (!categoryData[0]) {
+    if(!categoryData || categoryData == null ){
       res.status(404).json({ message: 'No catagory with this id!' });
       return;
     }
@@ -84,7 +84,7 @@ router.delete('/:id', async (req, res) => {
       }
     });
 
-    if (!categoryData) {
+    if(!categoryData || categoryData == null ){
       res.status(404).json({ message: 'No category found with this id!' });
       return;
     }
